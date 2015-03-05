@@ -8,18 +8,29 @@ import java.util.Arrays;
  */
 public class Test {
     public static void main(String[] args) {
-        byte[] floatBuff = int2ByteArray(1234567890);
+        byte[] floatBuff = long2ByteArray(1234567890);
         System.out.println(Arrays.toString(floatBuff));
-        int deserializedFloat = byteArrayToInt(floatBuff);
+        int deserializedFloat = byteArrayToLong(floatBuff);
         System.out.println("Deserialized int : " + deserializedFloat);
+
+//        String str = "HEAD / HTTP/1.0\r\n\r\n";
+//        System.out.println(str.length());
+
+
+        int i=123456;
+        System.out.println((byte )((i >> 24) & 0xff));
+        System.out.println((byte )((i >> 16) & 0xff));
+        System.out.println((byte )((i >> 8) & 0xff));
+        System.out.println((byte )(i & 0xff));
+
     }
 
-    public static byte [] int2ByteArray (int value)
+    public static byte [] long2ByteArray (int value)
     {
-        return ByteBuffer.allocate(4).putInt(value).array();
+        return ByteBuffer.allocate(Integer.BYTES).putInt(value).array();
     }
 
-    public static int byteArrayToInt(byte[] array){
+    public static int byteArrayToLong(byte[] array){
         return ByteBuffer.wrap(array).getInt();
     }
 }

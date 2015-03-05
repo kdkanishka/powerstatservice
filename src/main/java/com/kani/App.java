@@ -20,22 +20,26 @@ public class App {
         System.out.println("Connected to I2C bus");
         I2CDevice device = bus.getDevice(SLAVE_ADDR);
 
-        byte dataToSlave = 10;
+//        byte dataToSlave = 10;
 //        device.write(dataToSlave);
 //        System.out.println("Data written to slave");
 
         Thread.sleep(1000);
 //        byte dataFromSlave = (byte)device.read();
 //        System.out.println("Received data from slave : " + dataFromSlave);
-        byte[] dataFromSlave = new byte[4];
-        device.read(dataFromSlave,0,4);
+        byte[] dataFromSlave = new byte[11];
+        device.read(dataFromSlave,0,11);
 
         System.out.println("Received : " + Arrays.toString(dataFromSlave));
-        System.out.println("Value : " + byteArrayToInt(dataFromSlave));
+        System.out.println("Value : " + new String(dataFromSlave));
         System.out.println("\nDone!");
     }
 
     public static int byteArrayToInt(byte[] array){
         return ByteBuffer.wrap(array).getInt();
+    }
+
+    public static long byteArrayToLong(byte[] array){
+        return ByteBuffer.wrap(array).getLong();
     }
 }
