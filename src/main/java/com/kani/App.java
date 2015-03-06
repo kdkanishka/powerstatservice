@@ -20,26 +20,43 @@ public class App {
         System.out.println("Connected to I2C bus");
         I2CDevice device = bus.getDevice(SLAVE_ADDR);
 
-//        byte dataToSlave = 10;
-//        device.write(dataToSlave);
-//        System.out.println("Data written to slave");
+        byte dataToSlave = 10;
+        device.write(dataToSlave);
+        System.out.println("Data written to slave");
 
         Thread.sleep(1000);
 //        byte dataFromSlave = (byte)device.read();
 //        System.out.println("Received data from slave : " + dataFromSlave);
-        byte[] dataFromSlave = new byte[11];
-        device.read(dataFromSlave,0,11);
+        byte[] dataFromSlave = new byte[20];
+        device.read(dataFromSlave, 0, 20);
 
         System.out.println("Received : " + Arrays.toString(dataFromSlave));
         System.out.println("Value : " + new String(dataFromSlave));
         System.out.println("\nDone!");
     }
 
-    public static int byteArrayToInt(byte[] array){
+    public static byte[] filterData(byte[] dataFromSlave) {
+        int firstMinusValIdx = -1;
+        for (int i = 0; i < dataFromSlave.length; i++) {
+            if(dataFromSlave[i] == -1){
+                firstMinusValIdx = i;
+                break;
+            }
+        }
+        byte[] filteredData = new byte[firstMinusValIdx];
+        if(firstMinusValIdx > -1){
+            System.arraycopy(dataFromSlave,0,filteredData,0,firstMinusValIdx);
+            return filteredData;
+        }else{
+            return dataFromSlave;
+        }
+    }
+
+    public static int byteArrayToInt(byte[] array) {
         return ByteBuffer.wrap(array).getInt();
     }
 
-    public static long byteArrayToLong(byte[] array){
+    public static long byteArrayToLong(byte[] array) {
         return ByteBuffer.wrap(array).getLong();
     }
 }
