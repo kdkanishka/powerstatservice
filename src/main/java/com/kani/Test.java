@@ -27,6 +27,8 @@ public class Test {
         System.out.println(Arrays.toString(data));
         byte[] filtered = App.filterData(data);
         System.out.println(Arrays.toString(filtered));
+
+        System.out.println("220.23AAAAAAAAAAAA220.23AAAA220 ".length());
     }
 
     public static byte [] long2ByteArray (int value)
