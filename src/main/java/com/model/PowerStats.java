@@ -9,6 +9,9 @@ public class PowerStats {
     private float supplyFrequency;
     private float totalKWattSeconds;
 
+    public PowerStats() {
+    }
+
     public PowerStats(float supplyVoltage, float supplyAmp, float supplyFrequency, float totalKWattSeconds) {
         this.supplyVoltage = supplyVoltage;
         this.supplyAmp = supplyAmp;
@@ -46,5 +49,15 @@ public class PowerStats {
 
     public void setTotalKWattSeconds(float totalKWattSeconds) {
         this.totalKWattSeconds = totalKWattSeconds;
+    }
+
+    @Override
+    public String toString() {
+        return "PowerStats{" +
+                "supplyVoltage=" + supplyVoltage +
+                ", supplyAmp=" + supplyAmp +
+                ", supplyFrequency=" + supplyFrequency +
+                ", totalKWattSeconds=" + totalKWattSeconds +
+                '}';
     }
 }
