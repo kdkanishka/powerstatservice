@@ -53,4 +53,18 @@ public class DataParser {
             return dataFromSlave;
         }
     }
+
+    public static byte parseZensorCommand(String command){
+        byte defaultCmd = -1;
+        if(command.toUpperCase().equals("ON KITCHEN")){
+            defaultCmd = 1;
+        }else if(command.toUpperCase().equals("OFF KITCHEN")){
+            defaultCmd = 2;
+        }else if(command.toUpperCase().equals("ON BEDROOM")){
+            defaultCmd = 3;
+        }else if(command.toUpperCase().equals("OFF BEDROOM")){
+            defaultCmd = 4;
+        }
+        return defaultCmd;
+    }
 }

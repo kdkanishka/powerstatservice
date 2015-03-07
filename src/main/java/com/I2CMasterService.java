@@ -3,6 +3,7 @@ package com;
 import com.exception.DataParserException;
 import com.i2c.DataParser;
 import com.i2c.I2CMaster;
+import com.i2c.ZensorIntegration;
 import com.model.PowerStats;
 import com.restclient.RestClient;
 
@@ -14,12 +15,16 @@ public class I2CMasterService {
         I2CMaster i2CMaster = new I2CMaster();
         PowerStats powerStats = new PowerStats();
         RestClient restClient = new RestClient();
+        ZensorIntegration zensorIntegration = new ZensorIntegration();
 
         //service begins
         while (true) {
             try {
                 Thread.sleep(1000);
-                String rowStatFromSlave = i2CMaster.askStatsFromSlave();
+                String zensorCommand = zensorIntegration.getInstruction();
+                System.out.println("ZENSOR COMMAND >" + zensorCommand);
+
+                String rowStatFromSlave = i2CMaster.askStatsFromSlave(zensorCommand);
                 System.out.println(rowStatFromSlave);
                 DataParser.parsePowerStats(rowStatFromSlave, powerStats);
                 System.out.println(powerStats);
