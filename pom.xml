@@ -20,6 +20,24 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.6</version>
+        </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.xerial</groupId>-->
+            <!--<artifactId>sqlite-jdbc</artifactId>-->
+            <!--<version>3.7.2</version>-->
+        <!--</dependency>-->
+
     </dependencies>
 
     <build>
